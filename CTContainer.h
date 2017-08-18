@@ -41,7 +41,7 @@ class CTContainer {
 
     void calculateAverages(){
       
-      int ampValues[2];
+      double ampValues[2];
       ampValues[0] = listCTClamps[0]->averageCumulativeAmps(numberIterations) + listCTClamps[1]->averageCumulativeAmps(numberIterations);
       ampValues[1] = listCTClamps[2]->averageCumulativeAmps(numberIterations) + listCTClamps[3]->averageCumulativeAmps(numberIterations);
       Serial.println("{\"home\": " + String(ampValues[0]) + 

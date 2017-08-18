@@ -15,6 +15,7 @@ class TedClamp : public CTClampsInterface
   public:
     const int maxAmps = 200;
     const int numberOfReadingg = 200;
+    const int numberZeroReadingAllowed = 300;
     unsigned long tmpCumulativeAnalogRead = 0;
     unsigned int tmpAnalogRead = 0;
     TedClamp(int Pin):CTClampsInterface(Pin){
@@ -26,7 +27,7 @@ class TedClamp : public CTClampsInterface
       int numberZero = 0;
       for (unsigned int n = 0; n < numberOfReadingg; n++)
       {
-        while(numberZero < 200){
+        while(numberZero < numberZeroReadingAllowed){
           tmpAnalogRead = analogRead(pin);
           if(tmpAnalogRead > 1 ){
             tmpCumulativeAnalogRead += tmpAnalogRead * tmpAnalogRead;
@@ -37,7 +38,7 @@ class TedClamp : public CTClampsInterface
           }
         }
       }
-      if(numberZero < 200)
+      if(numberZero < numberZeroReadingAllowed)
       {
         tmpCumulativeAnalogRead = sqrt(tmpCumulativeAnalogRead/numberOfReadingg);
         cumulativeAmps += map(tmpCumulativeAnalogRead, 0, 1023, 0, maxAmps);
