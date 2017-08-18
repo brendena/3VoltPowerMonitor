@@ -6,7 +6,7 @@ CTContainer ctClamps=  CTContainer();
 boolean throwAwayFirst = false;
 /*
  * 200 * 0.1 seconds = ~ 20 seconds.
-rougly
+rougly  
 */
 float delayTime = 0.1;
 int numberOfIterations = 200;
