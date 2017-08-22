@@ -1,7 +1,11 @@
 // EmonLibrary examples openenergymonitor.org, Licence GNU GPL V3
 
                   // Include Emon Library
-#include "./CTContainer.h"               
+#include "./CTContainer.h"
+#include <dht.h>
+dht DHT;
+#define DHT11_PIN 6         
+      
 CTContainer ctClamps=  CTContainer();
 boolean throwAwayFirst = false;
 /*
@@ -29,6 +33,9 @@ void loop()
   
   // throw away first go through
   if(throwAwayFirst == true){
+    int chk = DHT.read11(DHT11_PIN);
+    Serial.println("{\"temperature\": " + String(DHT.temperature) + 
+                     ",\"humidity\": " + String(DHT.humidity) + "  }");
     ctClamps.calculateAverages();
   }
   else{
